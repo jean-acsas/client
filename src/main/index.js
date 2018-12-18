@@ -2,6 +2,7 @@ import { app, protocol, BrowserWindow } from 'electron';
 import isDev from 'electron-is-dev';
 import path from 'path';
 import url from 'url';
+import is from 'electron-is';
 
 import getStaticPath from './util/getStaticPath';
 import bindApplicationMenu from './util/bindApplicationMenu';
@@ -39,6 +40,7 @@ function getWindowPath(productionPath, filename) {
 
 function createWindow() {
   const framelessConfig = isMac ? { titleBarStyle: 'hidden' } : { frame: false };
+  const framelessConfig = is.macOS() || is.linux() ? { titleBarStyle: 'hidden' } : { frame: false };
 
   const iconPath = path.join(getStaticPath(), 'icons', 'icon1024x1024.png');
 
